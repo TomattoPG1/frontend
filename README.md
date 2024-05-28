@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+=======
+# Descripción
+
+
+
+## Correr en dev
+
+
+1. Clonar el repositorio.
+2. Crear una copia del ```.env.template``` y renombrarlo a ```.env``` y cambiar las variables de entorno.
+3. Instalar dependencias ```npm install```
+4. Levantar la base de datos ```docker compose up -d```
+5. Correr las migraciones de Primsa ```npx prisma migrate dev```
+6. Ejecutar seed ```npm run seed```
+7. Correr el proyecto ```npm run dev```
+
+
+
+## Correr en prod
+>>>>>>> development
