@@ -39,7 +39,7 @@ export const TopMenu = () => {
 
 
         <div className="relative flex items-center">
-          <input className="bg-slate-50 hover:bg-red-200 text-sm rounded h-12 w-80 pl-10" placeholder="Busca tu producto..."/>
+          <input className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10 w-80 pl-10" placeholder="Busca tu producto..."/>
           <Link href="/search" className="absolute left-3">
             <IoSearchOutline className="w-5 h-5 text-gray-500" />
           </Link>
