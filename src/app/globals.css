@@ -27,7 +27,6 @@ body {
       rgb(var(--background-end-rgb))
 }
 
-
 @layer components {
   .w-15px {
     width: 100%;
