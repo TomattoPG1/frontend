@@ -87,6 +87,7 @@ function LoginButton() {
   return (
     <button 
       type="submit" 
+      style={{ width: '100px' }}
       className={ clsx({
         "btn-orange": !pending,
         "btn-orange-light": pending
