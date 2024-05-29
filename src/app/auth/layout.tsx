@@ -19,7 +19,8 @@ export default async function ShopLayout( { children }: {
   return (
 
     <main className="flex justify-center">
-      <div className="w-full sm:w-[350px] px-10">
+      {/* //Estaba en 350 */}
+      <div className="w-full sm:w-[800px] px-10"> 
 
         { children }
 

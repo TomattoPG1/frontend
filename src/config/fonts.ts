@@ -10,3 +10,8 @@ export const titleFont = Montserrat_Alternates({
   subsets: ['latin'],
   weight: ['500', '700'],
 });
+
+export const titleFontLight = Montserrat_Alternates({ 
+  subsets: ['latin'],
+  weight: ['200', '300'],
+});

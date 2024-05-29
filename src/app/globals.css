@@ -51,7 +51,7 @@ body {
 
 
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded transition-all;
+  @apply bg-blue-600 hover:bg-blue-800 text-white py-2 px-8 rounded transition-all;
 }
 
 .btn-secondary {
@@ -61,3 +61,22 @@ body {
 .btn-disabled {
   @apply bg-gray-600 text-white py-2 px-4 rounded transition-all;
 }
+
+.btn-orange{
+  @apply bg-customRed hover:bg-customRed-light text-white py-2 px-4  w-15px rounded transition-all;
+}
+
+.login-title2{
+  @apply text-customGrey;
+}
+.login-title{
+  @apply text-customBlue;
+}
+
+.login-input{
+  @apply text-customRed;
+}
+.login-border-input {
+  @apply border-customRed;
+}
+
