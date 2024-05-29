@@ -20,11 +20,13 @@ const config: Config = {
           light:'#f3816d'
         } ,
         customGrey: '#8C897D',
-        customBlue: '#1A4F63'
+        customBlue: '#1A4F63',
+        customGreen: '#6FB07F'
       },
       borderColor:{
         customRed: '#FC5B3F'
-      }
+      },
+      
     },
   },
   plugins: [],
