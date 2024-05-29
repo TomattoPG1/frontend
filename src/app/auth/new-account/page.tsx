@@ -1,13 +1,14 @@
 import { titleFont } from '@/config/fonts';
 import { RegisterForm } from './ui/RegisterForm';
 
-export default function NewAccountPage() {
+export default function RegisterPage() {
   return (
-    <div className="flex flex-col min-h-screen pt-32 sm:pt-52">
-
-      <h1 className={ `${ titleFont.className } text-4xl mb-5` }>Nueva cuenta</h1>
-
-      <RegisterForm />
+    <div className="flex flex-col w-full">
+      <h1 className={ `${ titleFont.className } text-4xl mb-5 w-full text-center login-title` }>Crear Cuenta</h1>
+      <h4 className='login-title2 w-full text-center'>Por favor, completa los campos a continuación para crear tu cuenta. Tu información será tratada con confidencialidad y seguridad.</h4>
+      <div className="flex flex-col  sm:pt-5">
+            <RegisterForm /> 
+      </div>
     </div>
   );
 }
