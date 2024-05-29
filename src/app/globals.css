@@ -27,8 +27,15 @@ body {
       rgb(var(--background-end-rgb))
 }
 
+@layer components {
+  .w-15px {
+    width: 100%;
+  }
+}
 
-
+.btn-orange{
+  @apply bg-customRed hover:bg-customRed-light text-white py-2 px-4 w-15px rounded transition-all;
+}
 @keyframes fadeIn {
   0% {opacity: 0;}
   100% {opacity: 1;}
@@ -83,4 +90,3 @@ body {
 .login-border-input {
   @apply border-customRed;
 }
-

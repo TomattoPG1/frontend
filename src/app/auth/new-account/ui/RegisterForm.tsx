@@ -7,19 +7,34 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { login, registerUser } from '@/actions';
 import { useState } from 'react';
 
-
 type FormInputs = {
   name: string;
   email: string;
   password: string;  
 }
+type RegisterButtonProps = {
+  pending: boolean;
+};
 
-
+function RegisterButton({ pending }: RegisterButtonProps) {
+  return (
+    <button 
+      type="submit" 
+      className={ clsx({
+        "btn-orange": !pending,
+        "btn-orange-light": pending
+      })}
+      disabled={ pending }
+      >
+      Crear cuenta
+    </button>
+  );
+}
 
 export const RegisterForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('')
-  const { register, handleSubmit, formState: {errors} } = useForm<FormInputs>();
+  const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async(data) => {
     setErrorMessage('');
@@ -35,41 +50,15 @@ export const RegisterForm = () => {
 
     await login( email.toLowerCase(), password );
     window.location.replace('/');
-
-
   }
-
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
-
-      {/* {
-        errors.name?.type === 'required' && (
-          <span className="text-red-500">* El nombre es obligatorio</span>
-        )
-      } */}
-
-
       <label htmlFor="email">Nombre completo</label>
       <input
         className={
           clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
-            {
-              'border-red-500': errors.name
-            }
-          )
-        }
-        type="text"
-        autoFocus
-        { ...register('name', { required: true }) }
-      />
-
-      <label htmlFor="email">Correo electrónico</label>
-      <input
-        className={
-          clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
+            "px-5 py-2 border login-border-input rounded mb-5",
             {
               'border-red-500': errors.email
             }
@@ -83,24 +72,35 @@ export const RegisterForm = () => {
       <input
         className={
           clsx(
-            "px-5 py-2 border bg-gray-200 rounded mb-5",
+            "px-5 py-2 border login-border-input rounded mb-5",
             {
               'border-red-500': errors.password
             }
           )
         }
         type="password"
-        { ...register('password', { required: true, minLength: 6 }) }
+        { ...register('password', { required: true }) }
       />
 
+      <label htmlFor="email">Confirmar Contraseña</label>
+      <input
+        className={
+          clsx(
+            "px-5 py-2 border login-border-input rounded mb-5",
+            {
+              'border-red-500': errors.password
+            }
+          )
+        }
+        type="password"
+        { ...register('password', { required: true }) }
+      />
       
-        <span className="text-red-500">{ errorMessage } </span>
-        
+      <span className="text-red-500">{ errorMessage } </span>
       
+      <RegisterButton pending={isSubmitting} />
 
-      <button className="btn-primary">Crear cuenta</button>
-
-      {/* divisor l ine */}
+      {/* divisor line */}
       <div className="flex items-center my-5">
         <div className="flex-1 border-t border-gray-500"></div>
         <div className="px-2 text-gray-800">O</div>
