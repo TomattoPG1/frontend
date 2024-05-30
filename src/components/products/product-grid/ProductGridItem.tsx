@@ -14,25 +14,25 @@ export const ProductGridItem = ({ product }: Props) => {
   const [displayImage, setDisplayImage] = useState(product.images[0]);
 
   return (
-    <div className="rounded-md overflow-hidden fade-in max-w-xs mx-auto">
-      <Link href={`/product/${product.slug}`}>
-        <Image
-          src={`/products/${displayImage}`}
-          alt={product.title}
-          className="w-full object-cover rounded h-full "
-          width={350}
-          height={350}
-          onMouseEnter={() => setDisplayImage(product.images[1])}
-          onMouseLeave={() => setDisplayImage(product.images[0])}
-        />
-      </Link>
-
-      <div className="p-4 flex flex-col">
-        <Link className="hover:text-blue-600" href={`/product/${product.slug}`}>
+    <div className="w-64 border rounded-md">
+    <img
+      src={`/products/${displayImage}`}
+      alt={product.title}
+      className="w-full h-40 object-cover"
+      onMouseEnter={() => setDisplayImage(product.images[1])}
+      onMouseLeave={() => setDisplayImage(product.images[0])}
+    />
+    <div className="p-4">
+      <h5 className="text-sm text-gray-500 font-bold tracking-widest mb-2 uppercase">
+        <Link href={`/product/${product.slug}`} className="hover:text-blue-600">
           {product.title}
         </Link>
-        <span className="font-bold">${product.price}</span>
-      </div>
+      </h5>
+      <p>${product.price}</p>
+      <a href={`/product/${product.slug}`} className="bg-customRed hover:bg-green-400 text-white px-4 py-2 inline-block mt-4 rounded">
+        Read more
+      </a>
     </div>
+  </div>
   );
 };
