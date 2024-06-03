@@ -30,18 +30,21 @@ export const LoginForm = () => {
 
   return (
     <form action={dispatch} className="flex flex-col">
-      <label htmlFor="email">Correo electrónico</label>
+      <label htmlFor="email">Correo electrónico <span className='login-input'>*</span></label>
       <input
-        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        className="px-5 py-2 border login-border-input rounded mb-5"
         type="email"
         name="email"
+        placeholder='Correo Electronico'
       />
 
-      <label htmlFor="email">Contraseña</label>
+      <label htmlFor="email">Contraseña <span className='login-input'>*</span></label>
       <input
-        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        className="px-5 py-2 border login-border-input  rounded mb-5"
         type="password"
         name="password"
+        placeholder='Contrasenia'
+
       />
 
       <div
@@ -84,9 +87,10 @@ function LoginButton() {
   return (
     <button 
       type="submit" 
+      style={{ width: '100px' }}
       className={ clsx({
-        "btn-primary": !pending,
-        "btn-disabled": pending
+        "btn-orange": !pending,
+        "btn-orange-light": pending
       })}
       disabled={ pending }
       >

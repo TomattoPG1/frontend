@@ -13,8 +13,8 @@ export default function ShopLayout( { children }: {
         { children }
 
       </div>
-
       <Footer />
+
     </main>
   );
 }
