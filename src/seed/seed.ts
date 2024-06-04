@@ -129,7 +129,7 @@ export const initialData: SeedData = {
     },
     {
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada viverra pretium. Phasellus porta tellus felis, quis pulvinar enim molestie vitae. Nam non nulla nibh. Morbi quis leo eu enim vulputate accumsan. Nullam dapibus convallis ornare. Aenean aliquet, erat vel interdum sollicitudin, nulla risus hendrerit mi, sit amet ultrices nisl felis et ante. Fusce mi enim, vehicula in tempor vitae, laoreet eu leo. Aliquam euismod quam sit amet suscipit dictum. Cras vitae nunc lobortis libero maximus interdum.",
+        "Chamarra de mezclilla Gato Asesino/Noche Estrellada de Van Gogh: Desata tu Artista Interior y Rebelde. Canaliza tu Van Gogh interior y tu felino feroz con esta electrizante chamarra de mezclilla, una fusión de brillantez artística y estilo rebelde. Abraza la noche con la obra maestra de Van Gogh: Adornada con una cautivadora interpretación de la icónica Noche Estrellada de Van Gogh, esta chamarra te transforma en una obra de arte ambulante. Las pinceladas arremolinadas y los colores vibrantes capturan la esencia del genio de Van Gogh, agregando un toque de sofisticación artística a tu estilo diario.",
       images: ["7.png", "7a.png"],
       inStock: 15,
       price: 35,
@@ -137,7 +137,7 @@ export const initialData: SeedData = {
       slug: "bag_cybertruck_owl_tee6",
       type: "bags",
       tags: ["bag"],
-      title: "Lorem ipsum dolor sit amet",
+      title: "Chamarra gato asesino/noche estrellada de van goth",
       gender: "bags",
     },
   ],
