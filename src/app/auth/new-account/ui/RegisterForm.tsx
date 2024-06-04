@@ -1,5 +1,6 @@
 "use client";
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -41,12 +42,14 @@ export const RegisterForm = () => {
   const onSubmit: SubmitHandler<FormInputs> = async(data) => {
    
     try {
-    console.log(data); // Esto imprimirá los datos del formulario en la consola
     setErrorMessage('');
     const { name, email, password, confirmPassword } = data;
     
     if (password !== confirmPassword) {
-      setErrorMessage('Las contraseñas no coinciden');
+      toast.error('Las contraseñas no coinciden');
+      
+      
+
       return;
     }
 
@@ -55,6 +58,7 @@ export const RegisterForm = () => {
     console.log(resp);
     if ( !resp.ok ) {
       setErrorMessage( resp.message );
+      toast.error(resp.message); 
       return;
     }
 
@@ -63,6 +67,7 @@ export const RegisterForm = () => {
 
   } catch (error) {
     setErrorMessage('Hubo un error al conectar con el servidor');
+    toast.error('Hubo un error al conectar con el servidor');
   }
   }
 
@@ -100,6 +105,7 @@ export const RegisterForm = () => {
         }
         type="email"
         { ...register('email', { required: 'El correo electrónico es obligatorio', pattern: /^\S+@\S+$/i }) }
+        
       />
       {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
@@ -136,7 +142,7 @@ export const RegisterForm = () => {
       {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
       
       <span className="text-red-500">{ errorMessage } </span>
-      
+
       <RegisterButton pending={isSubmitting} />
 
       {/* divisor line */}
@@ -146,6 +152,7 @@ export const RegisterForm = () => {
         <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
+      <ToastContainer /> {/* Agrega esta línea */}
       <Link href="/auth/login" className="btn-secondary text-center">
         Ingresar
       </Link>
