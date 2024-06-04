@@ -73,9 +73,10 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
-      <label htmlFor="name">Nombre completo</label>
+      <label htmlFor="name" className="custom-color">Nombre completo</label>
       <input
        id="name"
+       placeholder="Ingresa tu nombre"
         className={
           clsx(
             "px-5 py-2 border login-border-input rounded mb-5",
@@ -95,6 +96,7 @@ export const RegisterForm = () => {
       <label htmlFor="email">Correo electrónico*</label>
       <input
       id="email"
+      placeholder="Tu correo electronico "
         className={
           clsx(
             "px-5 py-2 border login-border-input rounded mb-5",
@@ -112,6 +114,7 @@ export const RegisterForm = () => {
       <label htmlFor="password">Contraseña *</label>
       <input
       id="password"
+      placeholder='Tu contraseña'
         className={
           clsx(
             "px-5 py-2 border login-border-input rounded mb-5",
@@ -128,6 +131,7 @@ export const RegisterForm = () => {
       <label htmlFor="confirmPassword">Confirmar contraseña *</label>
       <input
       id="confirmPassword"
+      placeholder='Confirma tu contraseña'
         className={
           clsx(
             "px-5 py-2 border login-border-input rounded mb-5",
