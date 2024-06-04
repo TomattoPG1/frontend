@@ -1,4 +1,5 @@
 "use client";
+import  {Footer} from '../../../../components/ui/footer/Footer';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import clsx from 'clsx';
@@ -72,6 +73,8 @@ export const RegisterForm = () => {
   }
 
   return (
+
+<div className="min-h-screen px-0 ">
     <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
       <label htmlFor="name" className="custom-color">Nombre completo</label>
       <input
@@ -160,6 +163,14 @@ export const RegisterForm = () => {
       <Link href="/auth/login" className="btn-secondary text-center">
         Ingresar
       </Link>
+      
     </form>
+
+    <footer className="footer-unique ">
+    <Footer />
+    </footer>
+    
+    </div>
   );
+  
 };
