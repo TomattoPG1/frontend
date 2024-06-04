@@ -5,8 +5,6 @@ import { z } from 'zod';
 
 import prisma from './lib/prisma';
 
-
-
 export const authConfig: NextAuthConfig = {
   pages: {
     signIn: '/auth/login',
@@ -33,7 +31,6 @@ export const authConfig: NextAuthConfig = {
       if ( user ) {
         token.data = user;
       }
-
       return token;
     },
 
@@ -41,15 +38,11 @@ export const authConfig: NextAuthConfig = {
       session.user = token.data as any;
       return session;
     },
-
-
-
   },
 
 
 
   providers: [
-
     Credentials({
       async authorize(credentials) {
 

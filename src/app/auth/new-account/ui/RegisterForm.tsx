@@ -54,7 +54,21 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
-      <label htmlFor="email">Nombre completo</label>
+      <label htmlFor="name">Nombre completo</label>
+      <input
+        className={
+          clsx(
+            "px-5 py-2 border login-border-input rounded mb-5",
+            {
+              'border-red-500': errors.name
+            }
+          )
+        }
+        type="text"
+        { ...register('name', { required: true, pattern: /^\S+@\S+$/i }) }
+      />
+
+<label htmlFor="email">Correo electrónico*</label>
       <input
         className={
           clsx(
@@ -68,7 +82,7 @@ export const RegisterForm = () => {
         { ...register('email', { required: true, pattern: /^\S+@\S+$/i }) }
       />
 
-      <label htmlFor="email">Contraseña</label>
+      <label htmlFor="password">Contraseña *</label>
       <input
         className={
           clsx(
@@ -82,7 +96,7 @@ export const RegisterForm = () => {
         { ...register('password', { required: true }) }
       />
 
-      <label htmlFor="email">Confirmar Contraseña</label>
+      <label htmlFor="password">Confirmar contraseña *</label>
       <input
         className={
           clsx(
