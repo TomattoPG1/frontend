@@ -5,6 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid'; // Asegúrate de tener instalado @heroicons/react
+
 
 import { login, registerUser } from '@/actions';
 import { useState } from 'react';
@@ -20,11 +22,13 @@ type RegisterButtonProps = {
 };
 
 
+
 function RegisterButton({ pending }: RegisterButtonProps) {
   return (
+    <div className="flex justify-center">
     <button 
       type="submit" 
-      className={ clsx({
+      className={ clsx("w-full sm:w-auto",{
         "btn-orange": !pending,
         "btn-orange-light": pending
       })}
@@ -32,6 +36,7 @@ function RegisterButton({ pending }: RegisterButtonProps) {
       >
       Crear cuenta
     </button>
+    </div>
   );
 }
 
@@ -73,9 +78,7 @@ export const RegisterForm = () => {
   }
 
   return (
-
-<div className="min-h-screen px-0 ">
-    <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col">
+    <form onSubmit={ handleSubmit( onSubmit ) }  className="flex flex-col mb-10">
       <label htmlFor="name" className="custom-color">Nombre completo</label>
       <input
        id="name"
@@ -116,6 +119,7 @@ export const RegisterForm = () => {
 
       <label htmlFor="password">Contraseña *</label>
       <input
+      
       id="password"
       placeholder='Tu contraseña'
         className={
@@ -126,7 +130,6 @@ export const RegisterForm = () => {
             }
           )
         }
-        type="password"
         { ...register('password', { required: 'La contraseña es obligatoria' }) }
       />
       {errors.password && <p className="text-red-500">{errors.password.message}</p>}
@@ -151,26 +154,8 @@ export const RegisterForm = () => {
       <span className="text-red-500">{ errorMessage } </span>
 
       <RegisterButton pending={isSubmitting} />
-
-      {/* divisor line */}
-      <div className="flex items-center my-5">
-        <div className="flex-1 border-t border-gray-500"></div>
-        <div className="px-2 text-gray-800">O</div>
-        <div className="flex-1 border-t border-gray-500"></div>
-      </div>
-
-      <ToastContainer /> {/* Agrega esta línea */}
-      <Link href="/auth/login" className="btn-secondary text-center">
-        Ingresar
-      </Link>
-      
     </form>
-
-    <footer className="footer-unique ">
-    <Footer />
-    </footer>
-    
-    </div>
+   
   );
   
 };

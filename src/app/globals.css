@@ -30,7 +30,8 @@ body {
 
 @layer components {
   .w-15px {
-    width: 100%;
+    width: 25%;
+
   }
 }
 
@@ -97,14 +98,4 @@ body {
 }
 label {
   color: #8C897D;
-}
-.footer-unique {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* ... otros estilos que quieras aplicar ... */
 }

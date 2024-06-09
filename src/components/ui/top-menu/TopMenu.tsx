@@ -3,10 +3,34 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { IoSearchOutline, IoCartOutline, IoMenuOutline, IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
-
+import  HeaderImage  from "../header/HeaderImage";
 import { titleFont, titleFontRoboto } from "@/config/fonts";
 import { useCartStore, useUIStore } from "@/store";
 import Image from 'next/image';
+
+export const Logo = () => (
+  <div>
+    <Link href="/">
+      <Image
+        src="/imgs/tomatto.png"
+        alt="Tomatto"
+        className=" sm:p-0"
+        width={ 150 }
+        height={ 150 }
+      />
+    </Link>
+  </div>
+);
+
+export const SearchBar = () => (
+  <div className="relative flex items-center">
+    <input className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10 w-80 pl-10" placeholder="Busca tu producto..."/>
+    <Link href="/search" className="absolute left-3">
+      <IoSearchOutline className="w-5 h-5 text-gray-500" />
+    </Link>
+  </div>
+);
+
 
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
@@ -22,27 +46,13 @@ export const TopMenu = () => {
     <div>
       <nav className="flex px-5 justify-between items-center w-full bg-customRed">
         {/* Logo */}
-        
         <div>
-          <Link href="/">
-          <Image
-              src="/imgs/tomatto.png"
-              alt="Tomatto"
-              className=" sm:p-0"
-              width={ 150 }
-              height={ 150 }
-            />
-          </Link>
-
-      
+          <Logo />
         </div>
 
 
         <div className="relative flex items-center">
-          <input className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10 w-80 pl-10" placeholder="Busca tu producto..."/>
-          <Link href="/search" className="absolute left-3">
-            <IoSearchOutline className="w-5 h-5 text-gray-500" />
-          </Link>
+          {/* Search */}
         </div>
 
         {/* Search, Cart, Menu */}
@@ -77,21 +87,13 @@ export const TopMenu = () => {
             <IoMenuOutline  className="text-white w-8 h-8"/>
           </button>
         </div>
-
-
-
-      
       </nav>
 
       <div className="flex w-full flex-col">
         <div className="flex px-5 justify-center items-center w-full ">
-          <Image
-                src="/imgs/fakeslider.png"
-                alt="Tomatto"
-                className=" sm:p-0"
-                width={ 1000 }
-                height={ 1000 }
-              />
+          {/* <HeaderImage /> */
+          <HeaderImage />
+          }
         </div>
 
         <div className="flex w-full flex-col mt-5">
@@ -107,30 +109,29 @@ export const TopMenu = () => {
         {/* Center Menu */}
         <div className="flex px-5 justify-center items-center w-full mt-6 mb-6">
           <div>
-              <button 
-              type="submit" 
-              style={{ width: '100px' }}
-              className=" btn-customGreen text-white"
-              >
-                <Link
-                  className="m-2 p-2 rounded-md transition-all hover:bg-gray-100 bg-customGreen"
-                  href="/gender/bags"
-                >
-                  Bolsos
-                </Link>
-          
-              </button>
-              <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
-                <Link href="/gender/pottery" className="block text-center">
-                Cerámicas
-                </Link>
-              </button>
+          <button 
+  type="submit" 
+  style={{ width: '100px' }}
+  className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white"
+>
+  <Link
+    className="block text-center"
+    href="/gender/bags"
+  >
+    Bolsos
+  </Link>
+</button>
+<button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+  <Link href="/gender/pottery" className="block text-center">
+    Cerámicas
+  </Link>
+</button>
 
-              <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
-                <Link href="/gender/jackets" className="block text-center">
-                  Chaquetas
-                </Link>
-              </button>
+<button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+  <Link href="/gender/jackets" className="block text-center">
+    Chaquetas
+  </Link>
+</button>
           </div>
         </div>
       </div>
