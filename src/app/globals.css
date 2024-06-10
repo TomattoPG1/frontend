@@ -15,7 +15,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-} */ 
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -23,8 +23,8 @@ body {
       to bottom,
       transparent,
       rgb(var(--background-start-rgb))
-      )
-      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-end-rgb));
 }
 
 @layer components {
@@ -33,17 +33,25 @@ body {
   }
 }
 
-.btn-orange{
+.btn-orange {
   @apply bg-customRed hover:bg-customRed-light text-white py-2 px-4 w-15px rounded transition-all;
 }
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-} 
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @-webkit-keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .fade-in {
@@ -55,7 +63,6 @@ body {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
-
 
 .btn-primary {
   @apply bg-blue-600 hover:bg-blue-800 text-white py-2 px-8 rounded transition-all;
@@ -69,22 +76,26 @@ body {
   @apply bg-gray-600 text-white py-2 px-4 rounded transition-all;
 }
 
-.btn-orange{
+.btn-danger {
+  @apply bg-red-500 hover:bg-red-700 text-white py-2 px-8 rounded transition-all;
+}
+
+.btn-orange {
   @apply bg-customRed hover:bg-customRed-light text-white py-2 px-4  rounded transition-all;
 }
 
-.btn-green{
+.btn-green {
   @apply bg-customGreen hover:bg-customRed-light text-white py-2 px-4  rounded transition-all;
 }
 
-.login-title2{
+.login-title2 {
   @apply text-customGrey;
 }
-.login-title{
+.login-title {
   @apply text-customBlue;
 }
 
-.login-input{
+.login-input {
   @apply text-customRed;
 }
 .login-border-input {

@@ -19,3 +19,4 @@ export * from "./ui/top-menu/TopMenu";
 
 export * from "./orders/OrderStatus";
 export * from "./paypal/PayPalButton";
+export * from "./product/product-image/ProductImage";

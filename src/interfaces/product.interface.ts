@@ -23,20 +23,12 @@ export interface CartProduct {
   gender: Category;
 }
 
-export type Category =
-  | "men"
-  | "women"
-  | "kid"
-  | "unisex"
-  | "bags"
-  | "pottery"
-  | "jackets";
+export interface ProductImage {
+  id: number;
+  url: string;
+  productId: string;
+}
+
+type Category = "bags" | "pottery" | "jackets";
 export type Size = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
-export type Type =
-  | "shirts"
-  | "pants"
-  | "hoodies"
-  | "hats"
-  | "bags"
-  | "pottery"
-  | "jackets";
+export type Type = "bags" | "pottery" | "jackets";
