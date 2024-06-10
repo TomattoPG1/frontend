@@ -6,18 +6,12 @@ interface Props {
 }
 
 
-export const ProductGrid = ( { products }: Props ) => {
+export const ProductGrid: React.FC<Props> = ({ products }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 mb-10">
-      {
-        products.map( product => (
-          <ProductGridItem
-            key={ product.slug }
-            product={ product }
-          />
-        ) )
-      }
-
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 items-center justify-center" style={{ border: '1px solid orange' }}>
+      {products.map((product) => (
+        <ProductGridItem key={product.slug} product={product} />
+      ))}
     </div>
   );
 };

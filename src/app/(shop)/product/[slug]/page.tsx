@@ -1,9 +1,13 @@
+'useClient'
 export const revalidate = 604800; //7 días
 import { Metadata, ResolvingMetadata } from 'next';
-
+import { ProductGrid } from '@/components';
 import { notFound } from 'next/navigation';
-
+import { Product } from '@/interfaces';
 import { titleFont } from '@/config/fonts';
+import { useTabState } from './ui/useTabState';
+
+
 import {
   ProductMobileSlideshow,
   ProductSlideshow,
@@ -13,6 +17,14 @@ import {
 } from '@/components';
 import { getProductBySlug } from '@/actions';
 import { AddToCart } from './ui/AddToCart';
+
+interface Props {
+  products: Product[];
+}
+
+const productosRecomendados: Product[] = [
+  // Tus productos recomendados van aquí
+];
 
 interface Props {
   params: {
@@ -54,6 +66,8 @@ export default async function ProductBySlugPage({ params }: Props) {
     notFound();
   }
 
+  const { activeTab, setActiveTab } = useTabState();
+
   return (
     <div className="container mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -81,7 +95,7 @@ export default async function ProductBySlugPage({ params }: Props) {
           <h1 className={` ${titleFont.className} antialiased font-bold  text-2xl`}>
             {product.title}
           </h1>
-{/* Aquí agregarías el selector de tallas y cantidad */}
+          {/* Aquí agregarías el selector de tallas y cantidad */}
           <div className="flex items-center my-4">
             <span className="text-xl text-red-500 line-through mr-2">${product.price}</span>
             <span className="text-2xl text-green-500">${product.price}</span>
@@ -89,48 +103,77 @@ export default async function ProductBySlugPage({ params }: Props) {
           </div>
 
           <p className="text-lg mb-5">${product.price}</p>
-
+          <h3 className="font-bold text-sm">Descripción</h3>
+          <p className="font-light">{product.description}</p>
           <AddToCart product={product} />
+        </div>
+      </div>
 
-          {/* Descripción */}
-
-          <div className="mt-10">
-            <ul className="flex border-b">
-              <li className="-mb-px mr-1">
-                <a
-                  className="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold"
+      {/* Recommended Products Section */}
+      <div className="mt-10">
+        {/* Descripción */}
+        <div className="mt-10">
+          <ul className="flex border-b justify-between">
+            <li className="-mb-px mr-1">
+            <a
+                  className={`bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold ${activeTab === 'Descripción' ? 'active' : ''}`}
                   href="#"
+                  onClick={() => setActiveTab('Descripción')}
                 >
                   Descripción
                 </a>
-              </li>
-              <li className="mr-1">
-                <a
-                  className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-700 font-semibold"
+            </li>
+            <li className="mr-1">
+            <a
+                  className={`bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-700 font-semibold ${activeTab === 'Ficha técnica' ? 'active' : ''}`}
                   href="#"
+                  onClick={() => setActiveTab('Ficha técnica')}
                 >
                   Ficha técnica
                 </a>
-              </li>
-              <li className="mr-1">
-                <a
-                  className="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-700 font-semibold"
+            </li>
+            <li className="mr-1">
+            <a
+                  className={`bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-700 font-semibold ${activeTab === 'Recomendaciones' ? 'active' : ''}`}
                   href="#"
+                  onClick={() => setActiveTab('Recomendaciones')}
                 >
                   Recomendaciones
                 </a>
-              </li>
-            </ul>
-            <div className="tab-content mt-4">{/* Contenido de las pestañas */}</div>
-          </div>
-          <h3 className="font-bold text-sm">Descripción</h3>
-          <p className="font-light">{product.description}</p>
-        </div>
+            </li>
+          </ul>
+          <div className="tab-content mt-4">{/* Contenido de las pestañas */}
 
-        {/* Recommended Products Section */}
-        <div className="mt-10">
-          <h2 className="text-xl font-bold mb-4">Productos recomendados</h2>
-          <div className="flex gap-6">{/* Aquí agregarías los productos recomendados */}</div>
+          {activeTab === 'Descripción' && (
+                <div>
+                  <h3 className="font-bold text-sm">Descripción</h3>
+                  <p className="font-light">{product.description}</p>
+                </div>
+              )}
+              {activeTab === 'Ficha técnica' && (
+                <div>
+                  {/* Contenido de la ficha técnica */}
+                </div>
+              )}
+              {activeTab === 'Recomendaciones' && (
+                <div>
+                  <h2 className="text-xl font-bold mb-4">Productos recomendados</h2>
+                  <div className="flex gap-6">
+                    {productosRecomendados.map((productoRecomendado, index) => (
+                      <ProductGrid key={index} products={[productoRecomendado]} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+          </div>
+        </div>
+        <h2 className="text-xl font-bold mb-4">Productos recomendados</h2>
+        <div className="flex gap-6">
+          {/* Aquí agregarías los productos recomendados */}
+          {productosRecomendados.map((productoRecomendado, index) => (
+            <ProductGrid key={index} products={[productoRecomendado]} />
+          ))}
         </div>
       </div>
     </div>
