@@ -1,106 +1,90 @@
-import { titleFont } from "@/config/fonts";
+"use client";
+
+import { useEffect } from 'react';
 import Link from "next/link";
-import Image from 'next/image';
+import { useForm } from "react-hook-form";
+import { authenticate } from "@/actions";
+import { IoInformationOutline } from "react-icons/io5";
+import clsx from 'clsx';
 
+type FormInputs = {
+  email: string;
+  password: string;
+}
 
-export const Footer = () => {
+export const LoginForm = () => {
+  const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm<FormInputs>();
+  const onSubmit = async (data: FormInputs) => {
+    // Aquí va la lógica de autenticación
+    console.log(data);
+  }
+
+  useEffect(() => {
+    // Aquí va la lógica de redirección
+  }, []);
+
   return (
-    <div className="flex w-full flex-col text-xs bg-customBlue text-white" >
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="flex justify-center items-center mb-5 md:mb-0" >
-        <Link href="/">
-        <Image
-            src="/imgs/logo.png"
-            alt="Tomatto"
-            className=" sm:p-0"
-            width={ 150 }
-            height={ 150 }
-          />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <label htmlFor="email">Correo electrónico <span className='login-input'>*</span></label>
+      <input
+        className={clsx("px-5 py-2 border login-border-input rounded mb-5", {'border-red-500': errors.email})}
+        type="email"
+        placeholder='Correo Electronico'
+        {...register('email', { required: 'El correo electrónico es obligatorio', pattern: /^\S+@\S+$/i })}
+      />
+      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-          {/* <span className={`${titleFont.className} antialiased font-bold `}>
-            Tomatto{" "}
-          </span>
-          <span>| shop </span> */}
-          {/* <span>© {new Date().getFullYear()}</span> */}
-        </Link>
-        </div>
+      <label htmlFor="password">Contraseña <span className='login-input'>*</span></label>
+      <input
+        className={clsx("px-5 py-2 border login-border-input rounded mb-5", {'border-red-500': errors.password})}
+        type="password"
+        placeholder='Contrasenia'
+        {...register('password', { required: 'La contraseña es obligatoria' })}
+      />
+      {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
-        <div className="flex flex-col md:flex-row justify-around items-center mb-5 md:mb-0" >
-          <div>
-            <Link href="/" className="mx-3 underline">
-              Quienes Somos?
-            </Link>
+      <div
+        className="flex h-8 items-end space-x-1"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {errors.email || errors.password ? (
+          <div className="flex flex-row mb-2">
+            <IoInformationOutline className="h-5 w-5 text-red-500" />
+            <p className="text-sm text-red-500">
+              Credenciales no son correctas
+            </p>
           </div>
-          <div>
-            <Link href="/" className="mx-3 underline">
-              Empresa
-            </Link>
-          </div>
-          <div>
-            <Link href="/" className="mx-3 underline">
-              El taller
-            </Link>
-          </div>
-          <div>
-            <Link href="/" className="mx-3 underline">
-              Contactenos
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center md:items-start" >
-          <div className="mb-3">
-            <div className="mt-3">
-              <span>Seguinos en:</span>
-            </div>
-          </div>
-
-          <div className="flex justify-around items-center w-full md:w-auto" >
-            <div>  <Image
-              src="/imgs/instagram.png"
-              alt="Tomatto"
-              className="p-5 sm:p-0"
-              width={ 20 }
-              height={ 20 }
-            /></div>
-            <div>  <Image
-              src="/imgs/whatsapp.png"
-              alt="Tomatto"
-              className="p-5 sm:p-0"
-              width={ 20 }
-              height={ 20 }
-            /></div>
-            <div>  <Image
-              src="/imgs/facebook.png"
-              alt="Tomatto"
-              className="p-5 sm:p-0"
-              width={ 20 }
-              height={ 20 }
-            /></div>
-            <div>  <Image
-              src="/imgs/tik-tok.png"
-              alt="Tomatto"
-              className="p-5 sm:p-0"
-              width={ 20 }
-              height={ 20 }
-            /></div>
-            <div>  <Image
-              src="/imgs/youtube.png"
-              alt="Tomatto"
-              className="p-5 sm:p-0"
-              width={ 20 }
-              height={ 20 }
-            /></div>
-          </div>
-        </div>
+        ) : null}
       </div>
 
-      <div className="flex justify-center items-center mt-6 " >
-        <div>
-          <span>©Todos los derechos reservados - Tomatto</span>
-        </div>
+      <LoginButton pending={isSubmitting} />
+
+      <div className="flex items-center my-5">
+        <div className="flex-1 border-t border-gray-500"></div>
+        <div className="px-2 text-gray-800">O</div>
+        <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
-    </div>
+      <Link href="/auth/new-account" className="btn-secondary text-center">
+        Crear una nueva cuenta
+      </Link>
+    </form>
   );
 };
+
+function LoginButton({ pending }: { pending: boolean }) {
+  return (
+    <button 
+      type="submit" 
+      style={{ width: '100px' }}
+      className={ clsx({
+        "btn-orange": !pending,
+        "btn-orange-light": pending
+      })}
+      disabled={ pending }
+      >
+      Ingresar
+    </button>
+  );
+}

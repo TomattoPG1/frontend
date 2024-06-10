@@ -26,16 +26,16 @@ type RegisterButtonProps = {
 function RegisterButton({ pending }: RegisterButtonProps) {
   return (
     <div className="flex justify-center">
-    <button 
-      type="submit" 
-      className={ clsx("w-full sm:w-auto",{
-        "btn-orange": !pending,
-        "btn-orange-light": pending
-      })}
-      disabled={ pending }
-      >
-      Crear cuenta
-    </button>
+      <button 
+        type="submit" 
+        className={ clsx("w-full sm:w-auto flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white",{
+          "bg-orange-600 hover:bg-orange-700": !pending,
+          "bg-orange-300": pending
+        })}
+        disabled={ pending }
+        >
+        Crear cuenta
+      </button>
     </div>
   );
 }

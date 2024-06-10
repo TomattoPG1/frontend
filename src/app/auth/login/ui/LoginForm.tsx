@@ -2,99 +2,95 @@
 
 import { useEffect } from 'react';
 import Link from "next/link";
-import { useFormState, useFormStatus } from "react-dom";
-
+import { useForm } from "react-hook-form";
 import { authenticate } from "@/actions";
+import { ToastContainer, toast } from 'react-toastify';
 import { IoInformationOutline } from "react-icons/io5";
 import clsx from 'clsx';
-// import { useRouter } from 'next/navigation';
+
+type FormInputs = {
+  email: string;
+  password: string;
+}
 
 export const LoginForm = () => {
-
-
-  // const router = useRouter();
-  const [state, dispatch] = useFormState(authenticate, undefined);
-  
-  console.log(state);
+  const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm<FormInputs>();
+  const onSubmit = async (data: FormInputs) => {
+    // Aquí va la lógica de autenticación
+    console.log(data);
+  }
 
   useEffect(() => {
-    if ( state === 'Success' ) {
-      // redireccionar
-      // router.replace('/');
-      window.location.replace('/');
+    if (errors.email) {
+        toast.error(errors.email.message);
     }
-
-  },[state]);
-
-
-
+    if (errors.password) {
+        toast.error(errors.password.message);
+    }
+   
+    // Aquí va la lógica de redirección
+}, [errors.email, errors.password]);
+ 
   return (
-    <form action={dispatch} className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+        <ToastContainer />
       <label htmlFor="email">Correo electrónico <span className='login-input'>*</span></label>
       <input
-        className="px-5 py-2 border login-border-input rounded mb-5"
+        className={clsx("px-5 py-2 border login-border-input rounded mb-5", {'border-red-500': errors.email})}
         type="email"
-        name="email"
         placeholder='Correo Electronico'
+        {...register('email', { required: 'El correo electrónico es obligatorio', pattern: /^\S+@\S+$/i })}
       />
+      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-      <label htmlFor="email">Contraseña <span className='login-input'>*</span></label>
+      <label htmlFor="password">Contraseña <span className='login-input'>*</span></label>
       <input
-        className="px-5 py-2 border login-border-input  rounded mb-5"
+        className={clsx("px-5 py-2 border login-border-input rounded mb-5", {'border-red-500': errors.password})}
         type="password"
-        name="password"
         placeholder='Contrasenia'
-
+        {...register('password', { required: 'La contraseña es obligatoria' })}
       />
+      {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
       <div
         className="flex h-8 items-end space-x-1"
         aria-live="polite"
         aria-atomic="true"
       >
-        {state === "CredentialsSignin" && (
+        {errors.email || errors.password ? (
           <div className="flex flex-row mb-2">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
             <p className="text-sm text-red-500">
               Credenciales no son correctas
             </p>
           </div>
-        )}
+        ) : null}
       </div>
 
-        <LoginButton />
-      {/* <button type="submit" className="btn-primary">
-        Ingresar
-      </button> */}
+      <LoginButton pending={isSubmitting} />
 
-      {/* divisor l ine */}
-      <div className="flex items-center my-5">
-        <div className="flex-1 border-t border-gray-500"></div>
-        <div className="px-2 text-gray-800">O</div>
-        <div className="flex-1 border-t border-gray-500"></div>
-      </div>
-
-      <Link href="/auth/new-account" className="btn-secondary text-center">
-        Crear una nueva cuenta
-      </Link>
+      <Link href="/auth/new-account" className="text-orange-500 text-center mt-4 p-10">
+  Crear una nueva cuenta
+</Link>
     </form>
   );
 };
 
-function LoginButton() {
-  const { pending } = useFormStatus();
-
+function LoginButton({ pending }: { pending: boolean }) {
   return (
+    <div className="flex justify-right items-center ">
+
     <button 
       type="submit" 
-      style={{ width: '100px' }}
+      style={{ width: '25%' }}
       className={ clsx({
         "btn-orange": !pending,
         "btn-orange-light": pending
       })}
       disabled={ pending }
       >
-      Ingresar
+      Acceso
     </button>
+    </div>
   );
 }
