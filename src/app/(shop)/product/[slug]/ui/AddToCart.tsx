@@ -59,7 +59,7 @@ export const AddToCart = ({ product }: Props) => {
       <QuantitySelector quantity={quantity} onQuantityChanged={setQuantity} />
 
       {/* Button */}
-      <button onClick={addToCart} className="btn-primary my-5">
+      <button onClick={addToCart} className="bg-orange-500 text-white py-2 px-4 rounded mt-4 hover:bg-orange-600 transition duration-300">
         Agregar al carrito
       </button>
     </>

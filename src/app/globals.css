@@ -1,3 +1,4 @@
+@import 'react-toastify/dist/ReactToastify.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,6 +31,7 @@ body {
 @layer components {
   .w-15px {
     width: 100%;
+
   }
 }
 
@@ -100,4 +102,11 @@ body {
 }
 .login-border-input {
   @apply border-customRed;
+}
+::placeholder {
+  color: #8C7C7C;
+ 
+}
+label {
+  color: #8C897D;
 }

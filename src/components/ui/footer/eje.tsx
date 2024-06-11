@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { authenticate } from "@/actions";
-import { ToastContainer, toast } from 'react-toastify';
 import { IoInformationOutline } from "react-icons/io5";
 import clsx from 'clsx';
 
@@ -21,19 +20,11 @@ export const LoginForm = () => {
   }
 
   useEffect(() => {
-    if (errors.email) {
-        toast.error(errors.email.message);
-    }
-    if (errors.password) {
-        toast.error(errors.password.message);
-    }
-   
     // Aquí va la lógica de redirección
-}, [errors.email, errors.password]);
- 
+  }, []);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-        <ToastContainer />
       <label htmlFor="email">Correo electrónico <span className='login-input'>*</span></label>
       <input
         className={clsx("px-5 py-2 border login-border-input rounded mb-5", {'border-red-500': errors.email})}
@@ -69,28 +60,31 @@ export const LoginForm = () => {
 
       <LoginButton pending={isSubmitting} />
 
-      <Link href="/auth/new-account" className="text-orange-500 text-center mt-4 p-10">
-  Crear una nueva cuenta
-</Link>
+      <div className="flex items-center my-5">
+        <div className="flex-1 border-t border-gray-500"></div>
+        <div className="px-2 text-gray-800">O</div>
+        <div className="flex-1 border-t border-gray-500"></div>
+      </div>
+
+      <Link href="/auth/new-account" className="btn-secondary text-center">
+        Crear una nueva cuenta
+      </Link>
     </form>
   );
 };
 
 function LoginButton({ pending }: { pending: boolean }) {
   return (
-    <div className="flex justify-right items-center ">
-
     <button 
       type="submit" 
-      style={{ width: '25%' }}
+      style={{ width: '100px' }}
       className={ clsx({
         "btn-orange": !pending,
         "btn-orange-light": pending
       })}
       disabled={ pending }
       >
-      Acceso
+      Ingresar
     </button>
-    </div>
   );
 }

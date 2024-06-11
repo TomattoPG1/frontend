@@ -2,18 +2,25 @@
 
 import { useState } from "react";
 
-import { Swiper as SwiperObject } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import "./slideshow.css";
-import Image from "next/image";
 import { ProductImage } from "../product-image/ProductImage";
+
+import { Swiper as SwiperObject } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+
+import './slideshow.css';
+import Image from 'next/image';
 
 interface Props {
   images: string[];
@@ -29,8 +36,8 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
       <Swiper
         style={
           {
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
+            '--swiper-navigation-color': '#fff',
+            '--swiper-pagination-color': '#fff',
           } as React.CSSProperties
         }
         spaceBetween={10}
@@ -46,12 +53,12 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
       >
         {images.map((image) => (
           <SwiperSlide key={image}>
-            <ProductImage
-              width={1024}
-              height={800}
-              src={image}
+            <Image
+              width={500}
+              height={300}
+              src={`/products/${image}`}
               alt={title}
-              className="rounded-lg object-fill"
+              className="object-cover w-full h-auto"
             />
           </SwiperSlide>
         ))}
