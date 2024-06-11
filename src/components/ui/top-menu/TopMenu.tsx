@@ -94,7 +94,10 @@ export const TopMenu = () => {
       <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />
       <div className="flex w-full flex-col">
         <div className="flex px-5 justify-center items-center w-full ">
-          {/* <HeaderImage /> */ <HeaderImage />}
+        <HeaderImage
+          />
+
+          
         </div>
 
         <div className="flex w-full flex-col mt-5">
