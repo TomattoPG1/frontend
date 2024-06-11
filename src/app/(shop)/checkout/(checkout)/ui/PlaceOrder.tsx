@@ -55,7 +55,7 @@ export const PlaceOrder = () => {
 
   return (
     <div className="bg-white rounded-xl shadow-xl p-7">
-      <h2 className="text-2xl mb-2">Dirección de entrega</h2>
+      <h2 className="login-title text-2xl mb-2"><b>Dirección de entrega</b> </h2>
       <div className="mb-10">
         <p className="text-xl">
           {address.firstName} {address.lastName}
@@ -72,7 +72,7 @@ export const PlaceOrder = () => {
       {/* Divider */}
       <div className="w-full h-0.5 rounded bg-gray-200 mb-10" />
 
-      <h2 className="text-2xl mb-2">Resumen de orden</h2>
+      <h2 className="text-2xl mb-2 login-title">Resumen de orden</h2>
 
       <div className="grid grid-cols-2">
         <span>No. Productos</span>
@@ -95,7 +95,7 @@ export const PlaceOrder = () => {
       <div className="mt-5 mb-2 w-full">
         <p className="mb-5">
           {/* Disclaimer */}
-          <span className="text-xs">
+          <span className="text-xs login-title2">
             Al hacer clic en &quot;Colocar orden&quot;, aceptas nuestros{" "}
             <a href="#" className="underline">
               términos y condiciones
@@ -113,8 +113,8 @@ export const PlaceOrder = () => {
           // href="/orders/123"
           onClick={onPlaceOrder}
           className={clsx({
-            "btn-primary": !isPlacingOrder,
-            "btn-disabled": isPlacingOrder,
+            "btn-orange": !isPlacingOrder,
+            "btn-orange-light": isPlacingOrder,
           })}
         >
           Colocar orden
