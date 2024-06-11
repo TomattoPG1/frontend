@@ -36,7 +36,7 @@ interface Props {
 
 const HeaderImage: React.FC = () => {
   return (
-    <div className="swiper" style={{ width: '400px', height: '200px' }}>
+    <div className="swiper mt-5" style={{ width: '400px', height: '200px' }}>
       <div className="swiper-wrapper">
         {/* Imagen 1 */}
         <div className="swiper-slide">
