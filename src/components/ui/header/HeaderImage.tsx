@@ -36,11 +36,11 @@ interface Props {
 
 const HeaderImage: React.FC = () => {
   return (
-    <div className="swiper mt-5" style={{ width: '400px', height: '200px' }}>
+    <div className="swiper mt-5" style={{ width: '500px', height: '200px' }}>
       <div className="swiper-wrapper">
         {/* Imagen 1 */}
         <div className="swiper-slide">
-          <img src="https://tequierofashion.com/cdn/shop/products/cdf3a82ba80aebff1acbb504e6ca7ab7_720x.jpg?v=1571720319" alt="Image 1" style={{ maxWidth: '500px' }} />
+          <img src="/imgs/bannersinbtn.png" alt="Image 1" style={{ maxWidth: '500px' }} />
         </div>
         {/* Imagen 2 */}
         <div className="swiper-slide">

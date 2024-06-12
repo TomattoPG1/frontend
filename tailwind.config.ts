@@ -17,7 +17,9 @@ const config: Config = {
       colors:{
         customRed:{
           DEFAULT:'#FC5B3F',
-          light:'#f3816d'
+          light:'#f3816d',
+          lighter:'#F5B2A6',
+
         } ,
         customGrey: '#8C897D',
         customBlue: '#1A4F63',

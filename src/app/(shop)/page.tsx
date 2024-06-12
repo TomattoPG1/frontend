@@ -2,9 +2,9 @@ export const revalidate = 60; // 60 segundos
 
 
 import { redirect } from 'next/navigation';
-
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, ProductGrid, Title } from '@/components';
+import ShopLayout from './layout';
 
 
 
@@ -34,14 +34,10 @@ export default async function Home({ searchParams }: Props) {
         subtitle="Todos los productos"
         className="mb-2"
       /> */}
-
       <ProductGrid 
         products={ products }
       />
-
-
       <Pagination totalPages={ totalPages } />
-      
     </>
   );
 }
