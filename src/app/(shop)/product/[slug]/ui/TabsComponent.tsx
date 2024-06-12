@@ -32,7 +32,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ description, technicalShe
         </li>
         <li className="mr-1">
           <a
-            className={`bg-white inline-block py-2 px-4 ${
+            className={`inline-block py-2 px-4 ${
               activeTab === 'fichaTecnica' ? 'text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-700'
             }`}
             href="#"
@@ -43,7 +43,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ description, technicalShe
         </li>
         <li className="mr-1">
           <a
-            className={`bg-white inline-block py-2 px-4 ${
+            className={`inline-block py-2 px-4 ${
               activeTab === 'recomendaciones' ? 'text-blue-700 font-semibold' : 'text-blue-500 hover:text-blue-700'
             }`}
             href="#"
