@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Title } from "@/components";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSummary } from "./ui/OrderSummary";
-
 export default function CartPage() {
   // redirect('/empty');
 
   return (
+
+
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <div className="flex flex-col w-[1000px]">
         <Title className="login-title text-center" title="Productos en tu carrito" />
@@ -21,7 +22,11 @@ export default function CartPage() {
             </Link>
 
             {/* Items */}
+
+            
             <ProductsInCart />
+          
+           
           </div>
 
           {/* Checkout - Resumen de orden */}
