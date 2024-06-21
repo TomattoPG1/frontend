@@ -41,7 +41,12 @@ interface NavBarProps {
   showSearchBar?: boolean;
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ totalItemsInCart, loaded, openSideMenu, showSearchBar = true }) => (
+export const NavBar: React.FC<NavBarProps> = ({
+  totalItemsInCart,
+  loaded,
+  openSideMenu,
+  showSearchBar = true,
+}) => (
   <nav className="flex px-5 justify-between items-center w-full bg-customRed">
     {/* Logo */}
     <div>
@@ -80,6 +85,18 @@ export const NavBar: React.FC<NavBarProps> = ({ totalItemsInCart, loaded, openSi
   </nav>
 );
 
+export const NavBarShow = () => {
+  const openSideMenu = useUIStore((state) => state.openSideMenu);
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  return <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />;
+};
+
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
@@ -94,10 +111,7 @@ export const TopMenu = () => {
       <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />
       <div className="flex w-full flex-col ">
         <div className="flex px-5 justify-center items-center w-full ">
-        <HeaderImage 
-          />
-
-          
+          <HeaderImage />
         </div>
 
         <div className="flex w-full flex-col mt-5">
