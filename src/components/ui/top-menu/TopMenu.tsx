@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
   IoSearchOutline,
@@ -100,6 +101,8 @@ export const NavBarShow = () => {
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+  const pathName = usePathname();
+  console.log(pathName);
 
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -132,19 +135,29 @@ export const TopMenu = () => {
             <button
               type="submit"
               style={{ width: '100px' }}
-              className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white"
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/bags' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
             >
               <Link className="block text-center" href="/gender/bags">
                 Bolsos
               </Link>
             </button>
-            <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+            <button
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/pottery' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
+            >
               <Link href="/gender/pottery" className="block text-center">
                 Cerámicas
               </Link>
             </button>
 
-            <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+            <button
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/jackets' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
+            >
               <Link href="/gender/jackets" className="block text-center">
                 Chaquetas
               </Link>
