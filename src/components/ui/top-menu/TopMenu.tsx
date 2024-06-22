@@ -14,6 +14,7 @@ import HeaderImage from '../header/HeaderImage';
 import { titleFont, titleFontRoboto } from '@/config/fonts';
 import { useCartStore, useUIStore } from '@/store';
 import Image from 'next/image';
+import LoginIcon from './ui/LoginIcon';
 
 export const Logo = () => (
   <div>
@@ -61,9 +62,10 @@ export const NavBar: React.FC<NavBarProps> = ({
 
     {/* Search, Cart, Menu */}
     <div className="flex items-center">
-      <Link href="auth/login" className="mx-2">
+      {/* <Link href="auth/login" className="mx-2">
         <IoPersonAddOutline className="text-white w-8 h-8" />
-      </Link>
+      </Link> */}
+      <LoginIcon />
 
       <Link href={totalItemsInCart === 0 && loaded ? '/empty' : '/cart'} className="mx-2">
         <div className="relative">
@@ -102,7 +104,6 @@ export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
   const pathName = usePathname();
-  console.log(pathName);
 
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
