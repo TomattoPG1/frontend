@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
   IoSearchOutline,
@@ -13,6 +14,7 @@ import HeaderImage from '../header/HeaderImage';
 import { titleFont, titleFontRoboto } from '@/config/fonts';
 import { useCartStore, useUIStore } from '@/store';
 import Image from 'next/image';
+import LoginIcon from './ui/LoginIcon';
 
 export const Logo = () => (
   <div>
@@ -41,7 +43,12 @@ interface NavBarProps {
   showSearchBar?: boolean;
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ totalItemsInCart, loaded, openSideMenu, showSearchBar = true }) => (
+export const NavBar: React.FC<NavBarProps> = ({
+  totalItemsInCart,
+  loaded,
+  openSideMenu,
+  showSearchBar = true,
+}) => (
   <nav className="flex px-5 justify-between items-center w-full bg-customRed">
     {/* Logo */}
     <div>
@@ -55,9 +62,10 @@ export const NavBar: React.FC<NavBarProps> = ({ totalItemsInCart, loaded, openSi
 
     {/* Search, Cart, Menu */}
     <div className="flex items-center">
-      <Link href="auth/login" className="mx-2">
+      {/* <Link href="auth/login" className="mx-2">
         <IoPersonAddOutline className="text-white w-8 h-8" />
-      </Link>
+      </Link> */}
+      <LoginIcon />
 
       <Link href={totalItemsInCart === 0 && loaded ? '/empty' : '/cart'} className="mx-2">
         <div className="relative">
@@ -80,9 +88,22 @@ export const NavBar: React.FC<NavBarProps> = ({ totalItemsInCart, loaded, openSi
   </nav>
 );
 
+export const NavBarShow = () => {
+  const openSideMenu = useUIStore((state) => state.openSideMenu);
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  return <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />;
+};
+
 export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+  const pathName = usePathname();
 
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -117,19 +138,29 @@ export const TopMenu = () => {
             <button
               type="submit"
               style={{ width: '100px' }}
-              className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white"
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/bags' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
             >
               <Link className="block text-center" href="/gender/bags">
                 Bolsos
               </Link>
             </button>
-            <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+            <button
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/pottery' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
+            >
               <Link href="/gender/pottery" className="block text-center">
                 Cerámicas
               </Link>
             </button>
 
-            <button className="m-2 p-2 rounded-md shadow-md shadow-grey transition-all hover:bg-gray-100 bg-white">
+            <button
+              className={`m-2 p-2 rounded-md shadow-md shadow-grey transition-all   ${
+                pathName === '/gender/jackets' ? 'bg-customRed' : 'bg-white hover:bg-gray-100'
+              }`}
+            >
               <Link href="/gender/jackets" className="block text-center">
                 Chaquetas
               </Link>
