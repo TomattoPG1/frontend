@@ -38,8 +38,8 @@ export const ProductGridItem = ({ product }: Props) => {
   // );
   return (
 
-    <div className="w-64 h-70 border rounded-md  container bg-white shadow-md rounded-lg" >
-      <div className="flex justify-end mr-2 mt-3 text-right" >
+    <div className="w-30 h-70 flex flex-col items-center justify-center bg-white p-4 m-2 rounded-lg shadow-md sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4" >
+      <div className="flex justify-end w-full mr-2 mt-3 text-right" >
       <IoHeartOutline className="text-gray-500 w-6 h-6"  />
       {/* <IoHeart className="text-yellow-500 w-6 h-6" /> */}
       </div>
@@ -78,7 +78,7 @@ export const ProductGridItem = ({ product }: Props) => {
           </a>
         </div>
       </div>
-  </div>
+    </div>
   );
 
 };

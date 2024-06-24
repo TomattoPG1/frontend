@@ -12,12 +12,12 @@ const LoginIcon = () => {
   return (
     <Link href="auth/login" className="mx-2">
       {isAuthenticated ? (
-        <div className="font-bold text-white">
+        <div className="font-bold text-white text-sm">
           {session?.user?.name}
-          <IoLogoGitlab />
+          <IoLogoGitlab/>
         </div>
       ) : (
-        <IoPersonAddOutline className="text-white w-8 h-8" />
+        <IoPersonAddOutline className="text-white w-6 h-6" />
       )}
     </Link>
   );
