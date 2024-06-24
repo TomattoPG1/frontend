@@ -1,23 +1,19 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import {
-  Category,
-  Product,
-  ProductImage as ProductWithImage,
-} from "@/interfaces";
-import Image from "next/image";
-import clsx from "clsx";
-import { createUpdateProduct, deleteProductImage } from "@/actions";
-import { useRouter } from "next/navigation";
-import { ProductImage } from "@/components";
+import { useForm } from 'react-hook-form';
+import { Category, Product, ProductImage as ProductWithImage } from '@/interfaces';
+import Image from 'next/image';
+import clsx from 'clsx';
+import { createUpdateProduct, deleteProductImage } from '@/actions';
+import { useRouter } from 'next/navigation';
+import { ProductImage } from '@/components';
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductWithImage[] };
   categories: Category[];
 }
 
-const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 interface FormInputs {
   title: string;
@@ -27,7 +23,7 @@ interface FormInputs {
   inStock: number;
   sizes: string[];
   tags: string;
-  gender: "bags" | "pottery" | "jackets";
+  gender: 'bags' | 'pottery' | 'jackets';
   categoryId: string;
 
   images?: FileList;
@@ -46,19 +42,19 @@ export const ProductForm = ({ product, categories }: Props) => {
   } = useForm<FormInputs>({
     defaultValues: {
       ...product,
-      tags: product.tags?.join(", "),
+      tags: product.tags?.join(', '),
       sizes: product.sizes ?? [],
 
       images: undefined,
     },
   });
 
-  watch("sizes");
+  watch('sizes');
 
   const onSizeChanged = (size: string) => {
-    const sizes = new Set(getValues("sizes"));
+    const sizes = new Set(getValues('sizes'));
     sizes.has(size) ? sizes.delete(size) : sizes.add(size);
-    setValue("sizes", Array.from(sizes));
+    setValue('sizes', Array.from(sizes));
   };
 
   const onSubmit = async (data: FormInputs) => {
@@ -67,29 +63,29 @@ export const ProductForm = ({ product, categories }: Props) => {
     const { images, ...productToSave } = data;
 
     if (product.id) {
-      formData.append("id", product.id ?? "");
+      formData.append('id', product.id ?? '');
     }
 
-    formData.append("title", productToSave.title);
-    formData.append("slug", productToSave.slug);
-    formData.append("description", productToSave.description);
-    formData.append("price", productToSave.price.toString());
-    formData.append("inStock", productToSave.inStock.toString());
-    formData.append("sizes", productToSave.sizes.toString());
-    formData.append("tags", productToSave.tags);
-    formData.append("categoryId", productToSave.categoryId);
-    formData.append("gender", productToSave.gender);
+    formData.append('title', productToSave.title);
+    formData.append('slug', productToSave.slug);
+    formData.append('description', productToSave.description);
+    formData.append('price', productToSave.price.toString());
+    formData.append('inStock', productToSave.inStock.toString());
+    formData.append('sizes', productToSave.sizes.toString());
+    formData.append('tags', productToSave.tags);
+    formData.append('categoryId', productToSave.categoryId);
+    formData.append('gender', productToSave.gender);
 
     if (images) {
       for (let i = 0; i < images.length; i++) {
-        formData.append("images", images[i]);
+        formData.append('images', images[i]);
       }
     }
 
     const { ok, product: updatedProduct } = await createUpdateProduct(formData);
 
     if (!ok) {
-      alert("Producto no se pudo actualizar");
+      alert('Producto no se pudo actualizar');
       return;
     }
 
@@ -104,55 +100,55 @@ export const ProductForm = ({ product, categories }: Props) => {
       {/* Textos */}
       <div className="w-full">
         <div className="flex flex-col mb-2">
-          <span>Título</span>
+          <span className="font-bold">Título Producto</span>
           <input
             type="text"
             className="p-2 border rounded-md bg-gray-200"
-            {...register("title", { required: true })}
+            {...register('title', { required: true })}
           />
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Slug</span>
+          <span className="font-bold">Titulo</span>
           <input
             type="text"
             className="p-2 border rounded-md bg-gray-200"
-            {...register("slug", { required: true })}
+            {...register('slug', { required: true })}
           />
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Descripción</span>
+          <span className="font-bold">Descripción</span>
           <textarea
             rows={5}
             className="p-2 border rounded-md bg-gray-200"
-            {...register("description", { required: true })}
+            {...register('description', { required: true })}
           ></textarea>
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Price</span>
+          <span className="font-bold">Precio</span>
           <input
             type="number"
             className="p-2 border rounded-md bg-gray-200"
-            {...register("price", { required: true, min: 0 })}
+            {...register('price', { required: true, min: 0 })}
           />
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Tags</span>
+          <span className="font-bold">Etiquetas</span>
           <input
             type="text"
             className="p-2 border rounded-md bg-gray-200"
-            {...register("tags", { required: true })}
+            {...register('tags', { required: true })}
           />
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Gender</span>
+          <span className="font-bold">Genero</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register("gender", { required: true })}
+            {...register('gender', { required: true })}
           >
             <option value="">[Seleccione]</option>
             <option value="bags">Bags</option>
@@ -162,10 +158,10 @@ export const ProductForm = ({ product, categories }: Props) => {
         </div>
 
         <div className="flex flex-col mb-2">
-          <span>Categoria</span>
+          <span className="font-bold">Categoria</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register("categoryId", { required: true })}
+            {...register('categoryId', { required: true })}
           >
             <option value="">[Seleccione]</option>
             {categories.map((category) => (
@@ -182,17 +178,17 @@ export const ProductForm = ({ product, categories }: Props) => {
       {/* Selector de tallas y fotos */}
       <div className="w-full">
         <div className="flex flex-col mb-2">
-          <span>Inventario</span>
+          <span className="font-bold">Inventario</span>
           <input
             type="number"
             className="p-2 border rounded-md bg-gray-200"
-            {...register("inStock", { required: true, min: 0 })}
+            {...register('inStock', { required: true, min: 0 })}
           />
         </div>
 
         {/* As checkboxes */}
         <div className="flex flex-col">
-          <span>Tallas</span>
+          <span className="font-bold">Tallas</span>
           <div className="flex flex-wrap">
             {sizes.map((size) => (
               // bg-blue-500 text-white <--- si está seleccionado
@@ -200,10 +196,10 @@ export const ProductForm = ({ product, categories }: Props) => {
                 key={size}
                 onClick={() => onSizeChanged(size)}
                 className={clsx(
-                  "p-2 border cursor-pointer rounded-md mr-2 mb-2 w-14 transition-all text-center",
+                  'p-2 border cursor-pointer rounded-md mr-2 mb-2 w-14 transition-all text-center',
                   {
-                    "bg-blue-500 text-white": getValues("sizes").includes(size),
-                  }
+                    'bg-customRed-light text-white': getValues('sizes').includes(size),
+                  },
                 )}
               >
                 <span>{size}</span>
@@ -212,10 +208,10 @@ export const ProductForm = ({ product, categories }: Props) => {
           </div>
 
           <div className="flex flex-col mb-2">
-            <span>Fotos</span>
+            <span className="font-bold">Fotos</span>
             <input
               type="file"
-              {...register("images")}
+              {...register('images')}
               multiple
               className="p-2 border rounded-md bg-gray-200"
               accept="image/png, image/jpeg, image/avif"
@@ -226,7 +222,7 @@ export const ProductForm = ({ product, categories }: Props) => {
             {product.ProductImage?.map((image) => (
               <div key={image.id}>
                 <ProductImage
-                  alt={product.title ?? ""}
+                  alt={product.title ?? ''}
                   src={image.url}
                   width={300}
                   height={300}

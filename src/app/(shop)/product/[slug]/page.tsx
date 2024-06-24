@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 export const revalidate = 604800; //7 días
 import { Metadata, ResolvingMetadata } from 'next';
 import { ProductGrid } from '@/components';
@@ -15,16 +15,13 @@ import {
 } from '@/components';
 import { getProductBySlug } from '@/actions';
 import { AddToCart } from './ui/AddToCart';
-import TabsComponent from './ui/TabsComponent'
-
-
-
+import TabsComponent from './ui/TabsComponent';
 
 interface Props {
   products: Product[];
 }
 
-const productosRecomendados: Product[]  = [
+const productosRecomendados: Product[] = [
   // Tus productos recomendados van aquí
 ];
 
@@ -33,8 +30,6 @@ interface Props {
     slug: string;
   };
 }
-
-
 
 export async function generateMetadata(
   { params }: Props,
@@ -64,7 +59,6 @@ export async function generateMetadata(
 export default async function ProductBySlugPage({ params }: Props) {
   const { slug } = params;
   const product = await getProductBySlug(slug);
-  console.log(product);
 
   if (!product) {
     notFound();
@@ -72,7 +66,7 @@ export default async function ProductBySlugPage({ params }: Props) {
 
   return (
     <div className="w-full md:w-full col-span-1 md:col-span-1 ">
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-10">
         {/* Slideshow */}
         <div className="col-span-1 md:col-span-3 ">
           {/* Mobile Slideshow */}
@@ -99,9 +93,13 @@ export default async function ProductBySlugPage({ params }: Props) {
           </h1>
           {/* Aquí agregarías el selector de tallas y cantidad */}
           <div className="flex flex-col md:flex-row items-center my-2 md:my-4">
-            <span className="text-lg md:text-xl text-red-500 line-through mr-2">${product.price}</span>
+            <span className="text-lg md:text-xl text-red-500 line-through mr-2">
+              ${product.price}
+            </span>
             <span className="text-xl md:text-2xl text-green-500">${product.price}</span>
-            <span className="mt-2 md:mt-0 ml-0 md:ml-2 p-1 bg-yellow-300 text-sm rounded">15% OFF</span>
+            <span className="mt-2 md:mt-0 ml-0 md:ml-2 p-1 bg-yellow-300 text-sm rounded">
+              15% OFF
+            </span>
           </div>
 
           <AddToCart product={product} />
