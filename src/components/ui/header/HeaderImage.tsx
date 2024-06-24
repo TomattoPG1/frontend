@@ -1,47 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Banner from './Banner';
 import { Product } from '@/interfaces';
-
+import { getProducts } from '@/actions/product/getProducts';
 const HeaderImage = () => {
-  const products: Product[] = [
-    {
-      id: '1',
-      description: 'Chaqueta de Mezclilla Artística',
-      images: ['/products/imagenBanner.svg'],
-      inStock: 10,
-      price: 99.99,
-      sizes: ['S', 'M', 'L'],
-      slug: 'chaqueta-mezclilla-artistica',
-      tags: ['chaqueta', 'mezclilla', 'artistica'],
-      title: 'Chaqueta de Mezclilla Artística',
-      gender: 'jackets',
-    },
-    // Agrega más productos si es necesario
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-    /* {
-      id: '2',
-      description: 'Mug moderno con diseño de calavera',
-      images: ['/products/imagenBannerC.png'],
-      // public\products\imagenBanner.png.png
-      inStock: 10,
-      price: 7.99,
-      sizes: ['S', 'M', 'L'],
-      slug: 'Mug-moderno-calavera',
-      tags: ['Mug','moderno', 'calavera'],
-      title: 'Mug moderno con diseño de calavera',
-      gender: 'pottery',
-    }, */
-  ];
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const loadedProducts = await getProducts();
+        setProducts(loadedProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al cargar los productos:', error);
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
+  if (loading) {
+    return <div>Cargando productos...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>No se encontraron productos</div>;
+  }
 
   return (
-
-   
-    <div className="swiper-container" >
+    <div className="swiper-container">
       <Swiper
         modules={[Autoplay, Navigation]}
         spaceBetween={50}
@@ -57,7 +50,6 @@ const HeaderImage = () => {
         ))}
       </Swiper>
     </div>
-  
   );
 };
 
