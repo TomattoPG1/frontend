@@ -29,6 +29,10 @@ const config: Config = {
       borderColor:{
         customRed: '#FC5B3F'
       },
+      fontSize: {
+        'larger': '2rem', 
+        'smaller': '1rem'
+      },
       
     },
   },
