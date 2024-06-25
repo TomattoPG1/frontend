@@ -83,12 +83,12 @@ export const ProductForm = ({ product, categories }: Props) => {
     }
 
     const { ok, product: updatedProduct } = await createUpdateProduct(formData);
-
+    console.log(formData);
     if (!ok) {
       alert('Producto no se pudo actualizar');
       return;
     }
-
+    alert('Cambios almacenados con exito');
     router.replace(`/admin/product/${updatedProduct?.slug}`);
   };
 

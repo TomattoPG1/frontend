@@ -14,7 +14,7 @@ const LoginIcon = () => {
       {isAuthenticated ? (
         <div className="font-bold text-white text-sm">
           {session?.user?.name}
-          <IoLogoGitlab/>
+          {/* <IoLogoGitlab/> */}
         </div>
       ) : (
         <IoPersonAddOutline className="text-white w-6 h-6" />

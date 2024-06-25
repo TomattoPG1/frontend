@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
-import "./slideshow.css";
-import { ProductImage } from "../product-image/ProductImage";
+import './slideshow.css';
+import { ProductImage } from '../product-image/ProductImage';
 
 import { Swiper as SwiperObject } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -56,7 +56,7 @@ export const ProductSlideshow = ({ images, title, className }: Props) => {
             <Image
               width={500}
               height={300}
-              src={`/products/${image}`}
+              src={image}
               alt={title}
               className="object-cover w-full h-auto"
             />
