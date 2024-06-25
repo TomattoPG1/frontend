@@ -113,14 +113,11 @@ export const TopMenu = () => {
   return (
     <div>
       <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />
+      <div>
+        <HeaderImage />
+      </div>
+
       <div className="flex w-full flex-col ">
-        <div className="flex px-5 justify-center items-center w-full ">
-        <HeaderImage 
-          />
-
-          
-        </div>
-
         <div className="flex w-full flex-col mt-5">
           <h1
             className={` ${titleFontRoboto.className} antialiased text-xl text-center text-customBlue`}
