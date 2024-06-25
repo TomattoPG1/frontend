@@ -25,9 +25,9 @@ export const Logo = () => (
 );
 
 export const SearchBar = () => (
-  <div className="relative flex items-center">
+  <div className="relative flex items-center" style={{border:"solid red 1px;"}} >
     <input
-      className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10 w-80 pl-10"
+      className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10  pl-10" width={60}
       placeholder="Busca tu producto..."
     />
     <Link href="/search" className="absolute left-3">
@@ -74,15 +74,15 @@ export const NavBar: React.FC<NavBarProps> = ({
               {totalItemsInCart}
             </span>
           )}
-          <IoCartOutline className="text-white w-8 h-8" />
+          <IoCartOutline className="text-white  w-6 h-6" />
         </div>
       </Link>
 
       <button
         onClick={openSideMenu}
-        className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+        className="m-1 p-2 rounded-md transition-all hover:bg-gray-100"
       >
-        <IoMenuOutline className="text-white w-8 h-8" />
+        <IoMenuOutline className="text-white w-6 h-6" />
       </button>
     </div>
   </nav>

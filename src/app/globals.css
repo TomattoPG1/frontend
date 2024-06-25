@@ -20,18 +20,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-start-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-start-rgb)))
     rgb(var(--background-end-rgb));
 }
 
 @layer components {
   .w-15px {
     width: 100%;
-
   }
 }
 
@@ -67,7 +62,7 @@ body {
 }
 
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-800 text-white py-2 px-8 rounded transition-all;
+  @apply bg-customRed hover:bg-customRed-light text-white py-2 px-8 rounded transition-all;
 }
 
 .btn-secondary {
@@ -104,9 +99,8 @@ body {
   @apply border-customRed;
 }
 ::placeholder {
-  color: #8C7C7C;
- 
+  color: #8c7c7c;
 }
 label {
-  color: #8C897D;
+  color: #8c897d;
 }

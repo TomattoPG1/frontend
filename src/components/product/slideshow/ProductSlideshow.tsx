@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
-import "./slideshow.css";
-import { ProductImage } from "../product-image/ProductImage";
+import './slideshow.css';
+import { ProductImage } from '../product-image/ProductImage';
 
 import { Swiper as SwiperObject } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
