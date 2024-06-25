@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import Banner from './Banner';
 import { Product } from '@/interfaces';
@@ -34,7 +33,6 @@ const HeaderImage = () => {
     return <div>No se encontraron productos</div>;
   }
 
-const HeaderImage: React.FC = () => {
   return (
     <div className="swiper-container">
       <Swiper
