@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node -r dotenv/config src/seed/seed-database.ts"
+   "seed": "ts-node src/seed/seed-database.ts"
+
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",

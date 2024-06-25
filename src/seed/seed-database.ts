@@ -3,16 +3,36 @@ import { initialData } from "./seed";
 import { countries } from "./seed-countries";
 
 async function main() {
-  // 1. Borrar registros previos
-  // await Promise.all( [
-  await prisma.userAddress.deleteMany();
-  await prisma.user.deleteMany();
-  await prisma.country.deleteMany();
+  // 1. Borrar registros de la tabla OrderItem que hacen referencia a registros de la tabla Order
+  await prisma.orderItem.deleteMany({
+    where: {
+      orderId: {
+        not: "",
+      },
+    },
+  });
 
-  await prisma.productImage.deleteMany();
-  await prisma.product.deleteMany();
-  await prisma.category.deleteMany();
-  // ]);
+  // 2. Borrar registros de la tabla OrderAddress que hacen referencia a registros de la tabla Order
+  await prisma.orderAddress.deleteMany({
+    where: {
+      orderId: {
+        not: "",
+      },
+    },
+  });
+
+  // 3. Borrar registros de la tabla Order
+  await prisma.order.deleteMany();
+
+  // 4. Borrar registros de otras tablas
+  await Promise.all([
+    prisma.userAddress.deleteMany(),
+    prisma.user.deleteMany(),
+    prisma.country.deleteMany(),
+    prisma.productImage.deleteMany(),
+    prisma.product.deleteMany(),
+    prisma.category.deleteMany(),
+  ]);
 
   const { categories, products, users } = initialData;
 
@@ -38,8 +58,7 @@ async function main() {
   }, {} as Record<string, string>);
 
   // Productos
-
-  products.forEach(async (product) => {
+  for (const product of products) {
     const { type, images, ...rest } = product;
 
     const dbProduct = await prisma.product.create({
@@ -49,7 +68,7 @@ async function main() {
       },
     });
 
-    // Images
+    // Imágenes
     const imagesData = images.map((image) => ({
       url: image,
       productId: dbProduct.id,
@@ -58,7 +77,7 @@ async function main() {
     await prisma.productImage.createMany({
       data: imagesData,
     });
-  });
+  }
 
   console.log("Seed ejecutado correctamente");
 }
