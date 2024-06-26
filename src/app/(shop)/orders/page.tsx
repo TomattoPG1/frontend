@@ -7,6 +7,7 @@ import { Title } from "@/components";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
+import OrderLayout from "./[id]/layout";
 
 export default async function OrdersPage() {
   const { ok, orders = [] } = await getOrdersByUser();
@@ -16,7 +17,7 @@ export default async function OrdersPage() {
   }
 
   return (
-    <>
+    <OrderLayout>
       <Title className="login-title" title="Orders" />
 
       <div className="mb-10">
@@ -87,6 +88,6 @@ export default async function OrdersPage() {
           </tbody>
         </table>
       </div>
-    </>
+    </OrderLayout>
   );
 }
