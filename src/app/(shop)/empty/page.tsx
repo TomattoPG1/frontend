@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { IoCartOutline } from 'react-icons/io5';
+import CheckoutLayout from '../checkout/layout';
 
 export default function EmptyPage() {
   return (
+    <CheckoutLayout>
     <div className="flex justify-center items-center h-[800px]">
 
       <IoCartOutline size={ 80 } className="mx-5" />
@@ -23,5 +25,6 @@ export default function EmptyPage() {
 
       
     </div>
+     </CheckoutLayout>
   );
 }
