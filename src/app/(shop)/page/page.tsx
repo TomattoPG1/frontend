@@ -2,9 +2,12 @@ export const revalidate = 60; // 60 segundos
 
 
 import { redirect } from 'next/navigation';
+
+import HomeLayout from './layout';
 import { getPaginatedProductsWithImages } from '@/actions';
-import { Pagination, ProductGrid } from '@/components';
-import HomeLayout from './page/layout';
+import { Pagination, ProductGrid, Title } from '@/components';
+import React from 'react';
+
 
 
 
@@ -29,7 +32,8 @@ export default async function Home({ searchParams }: Props) {
 
 
   return (
-    <HomeLayout>
+  
+   <HomeLayout>
       {/* <Title
         title="Tienda"
         subtitle="Todos los productos"
@@ -39,6 +43,7 @@ export default async function Home({ searchParams }: Props) {
         products={ products }
       />
       <Pagination totalPages={ totalPages } />
-    </HomeLayout>
+  
+      </HomeLayout>
   );
 }
