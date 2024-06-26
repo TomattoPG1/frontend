@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-   "seed": "ts-node src/seed/seed-database.ts"
-
+    "seed": "ts-node src/seed/seed-database.ts"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
@@ -20,6 +19,7 @@
     "clsx": "^2.0.0",
     "fast-csv": "^5.0.1",
     "get-stream": "^9.0.1",
+    "iconv-lite": "^0.6.3",
     "json2csv": "^6.0.0-alpha.2",
     "next": "14.0.1",
     "next-auth": "^5.0.0-beta.3",
