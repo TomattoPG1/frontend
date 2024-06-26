@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-
+import 'dotenv/config';
 interface SeedProduct {
   description: string;
   images: string[];
