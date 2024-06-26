@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Product } from '@/interfaces';
 import Image from 'next/image';
+import { Product } from '@/interfaces';
 
 interface Props {
   product: Product;
@@ -28,16 +28,10 @@ const Banner = ({ product }: Props) => {
       {/* Caja de la izquierda para imagen, logo del porcentaje, "Ahora", y precio */}
       <div className="flex w-1/3 items-start z-10 mr-10">
         <div className="relative flex-shrink-0">
-          <Image
-            src={product.images[0]}
-            alt={product.title}
-            className="object-cover h-64"
-            width={50}
-            height={50}
-          />
+          <img src={product.images[0]} alt={product.title} className="object-cover h-64" />
         </div>
         <div className="flex flex-col justify-start ml-4">
-          <Image src="/imgs/promo.svg" alt="50%" className="h-12" width={50} height={50} />
+          <img src="/imgs/promo.svg" alt="50%" className="h-12" />
           <h3 className="font-semibold text-customBlue italic text-larger">Ahora</h3>
           <span className="text-customRed text-smaller">${product.price}</span>
         </div>

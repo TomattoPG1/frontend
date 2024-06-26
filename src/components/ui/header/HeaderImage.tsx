@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import Banner from './Banner';
 import { Product } from '@/interfaces';
-import { getProducts } from '@/actions';
+import { getProducts } from '@/actions/product/getProducts';
 
 const HeaderImage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,6 +15,7 @@ const HeaderImage = () => {
     const loadProducts = async () => {
       try {
         const loadedProducts = await getProducts();
+        console.log('Productos cargados:', loadedProducts);
         setProducts(loadedProducts);
         setLoading(false);
       } catch (error) {

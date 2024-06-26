@@ -105,6 +105,7 @@ export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
   const pathName = usePathname();
+  console.log(pathName);
 
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -114,11 +115,9 @@ export const TopMenu = () => {
   return (
     <div>
       <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />
-      <div className="flex w-full flex-col ">
-        <div className="flex px-5 justify-center items-center w-full ">
-          <HeaderImage />
-        </div>
 
+      <div>{pathName === '/' && <HeaderImage />}</div>
+      <div className="flex w-full flex-col ">
         <div className="flex w-full flex-col mt-5">
           <h1
             className={` ${titleFontRoboto.className} antialiased text-xl text-center text-customBlue`}

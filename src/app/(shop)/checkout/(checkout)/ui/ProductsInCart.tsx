@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { useCartStore } from "@/store";
-import { currencyFormat } from "@/utils";
+import { useCartStore } from '@/store';
+import { currencyFormat } from '@/utils';
+import { ProductImage } from '@/components';
 
 export const ProductsInCart = () => {
   const [loaded, setLoaded] = useState(false);
@@ -22,14 +23,17 @@ export const ProductsInCart = () => {
   return (
     <>
       {productsInCart.map((product) => (
-        <div key={`${product.slug}-${product.size}`} className="container mx-auto my-10 p-6 bg-white shadow-md rounded-lg flex mb-5 w-full h-auto">
-          <Image
-            src={`/products/${product.image}`}
+        <div
+          key={`${product.slug}-${product.size}`}
+          className="container mx-auto my-10 p-6 bg-white shadow-md rounded-lg flex mb-5 w-full h-auto"
+        >
+          <ProductImage
+            src={product.image}
             width={100}
             height={100}
             style={{
-              width: "100px",
-              height: "100px",
+              width: '100px',
+              height: '100px',
             }}
             alt={product.title}
             className="mr-5 rounded"
@@ -40,9 +44,7 @@ export const ProductsInCart = () => {
               {product.size} - {product.title} ({product.quantity})
             </span>
 
-            <p className="font-bold">
-              {currencyFormat(product.price * product.quantity)}
-            </p>
+            <p className="font-bold">{currencyFormat(product.price * product.quantity)}</p>
           </div>
         </div>
       ))}
