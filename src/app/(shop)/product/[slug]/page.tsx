@@ -63,7 +63,7 @@ export default async function ProductBySlugPage({ params }: Props) {
 
   return (
     <div className="w-full md:w-full col-span-1 md:col-span-1 ">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-10">
         {/* Slideshow */}
         <div className="col-span-1 md:col-span-3 ">
           {/* Mobile Slideshow */}
@@ -100,15 +100,13 @@ export default async function ProductBySlugPage({ params }: Props) {
           </div>
 
           <AddToCart product={product} />
+          <TabsComponent
+            description={product.description}
+            technicalSheet="Contenido de la Ficha Técnica"
+            recommendations="Contenido de las Recomendaciones"
+          />
         </div>
       </div>
-
-      {/* Recommended Products Section */}
-      <TabsComponent
-        description={product.description}
-        technicalSheet="Contenido de la Ficha Técnica"
-        recommendations="Contenido de las Recomendaciones"
-      />
     </div>
   );
 }
