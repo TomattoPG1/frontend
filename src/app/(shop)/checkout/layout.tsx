@@ -1,4 +1,5 @@
 import { auth } from '@/auth.config';
+import { Footer, NavBarShow } from '@/components';
 import { redirect } from 'next/navigation';
 
 export default async function CheckoutLayout({children}: {
@@ -15,7 +16,10 @@ export default async function CheckoutLayout({children}: {
   
   return (
     <>
-    { children }
+
+    <NavBarShow />
+      <main>{children}</main>
+      <Footer />
     </>
   );
 }

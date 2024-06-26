@@ -55,10 +55,12 @@ export const NavBar: React.FC<NavBarProps> = ({
       <Logo />
     </div>
 
-    <div className="relative flex items-center">
-      {/* Search */}
-      <SearchBar />
-    </div>
+    {/* Conditionally render SearchBar */}
+    {showSearchBar && (
+      <div className="relative flex items-center">
+        <SearchBar />
+      </div>
+    )}
 
     {/* Search, Cart, Menu */}
     <div className="flex items-center">
@@ -97,7 +99,7 @@ export const NavBarShow = () => {
     setLoaded(true);
   }, []);
 
-  return <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} />;
+  return <NavBar totalItemsInCart={totalItemsInCart} loaded={loaded} openSideMenu={openSideMenu} showSearchBar={false} />;
 };
 
 export const TopMenu = () => {
