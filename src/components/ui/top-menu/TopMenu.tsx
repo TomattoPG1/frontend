@@ -25,9 +25,10 @@ export const Logo = () => (
 );
 
 export const SearchBar = () => (
-  <div className="relative flex items-center" style={{border:"solid red 1px;"}} >
+  <div className="relative flex items-center" style={{ border: 'solid red 1px;' }}>
     <input
-      className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10  pl-10" width={60}
+      className="bg-slate-50 hover:bg-red-200 text-sm rounded h-10  pl-10"
+      width={60}
       placeholder="Busca tu producto..."
     />
     <Link href="/search" className="absolute left-3">

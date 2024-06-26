@@ -13,6 +13,7 @@ export * from './product/get-stock-by-slug';
 export * from './product/product-pagination';
 export * from './product/create-update-product';
 export * from './product/delete-product-image';
+export * from './product/getProducts';
 
 export * from './order/place-order';
 export * from './order/get-order-by-id';

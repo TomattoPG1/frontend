@@ -1,59 +1,57 @@
-import Image from 'next/image';
-import { useState } from 'react';
-
-import { Swiper as SwiperObject } from 'swiper';
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
-
+import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
-import './slideshow.css';
-// const HeaderImage: React.FC = () => {
-//   return (
-//     // <div className="flex w-full flex-col">
-//     //   <div className="flex px-5 justify-center items-center w-full ">
-//     //     <Image
-//     //       src="/imgs/fakeslider.png"
-//     //       alt="Tomatto"
-//     //       className=" sm:p-0"
-//     //       width={1000} // Asegúrate de proporcionar un ancho
-//     //       height={500} // y una altura
-//     //     />
-//     //   </div>
-//     // </div>
+import Banner from './Banner';
+import { Product } from '@/interfaces';
+import { getProducts } from '@/actions';
 
-    
-//   );
-// };
+const HeaderImage = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-interface Props {
-  images: string[];
-  title: string;
-  className?: string;
-}
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const loadedProducts = await getProducts();
+        setProducts(loadedProducts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error al cargar los productos:', error);
+        setLoading(false);
+      }
+    };
 
-const HeaderImage: React.FC = () => {
+    loadProducts();
+  }, []);
+
+  if (loading) {
+    return <div>Cargando productos...</div>;
+  }
+
+  if (products.length === 0) {
+    return <div>No se encontraron productos</div>;
+  }
+
   return (
-    <div className="swiper mt-5" style={{ width: '500px', height: '200px' }}>
-      <div className="swiper-wrapper">
-        {/* Imagen 1 */}
-        <div className="swiper-slide">
-          <img src="/imgs/bannersinbtn.png" alt="Image 1" style={{ maxWidth: '500px' }} />
-        </div>
-        {/* Imagen 2 */}
-        <div className="swiper-slide">
-          <img src="https://tequierofashion.com/cdn/shop/products/product-image-827453293_720x.jpg?v=1571720312" alt="Image 2" style={{ maxWidth: '300px' }} />
-        </div>
-       
-      </div>
-      {/* Botones de navegación */}
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
+    <div className="swiper-container">
+      <Swiper
+        modules={[Autoplay, Navigation]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        autoplay={{ delay: 3000 }}
+        loop
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id}>
+            <Banner product={product} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
-
 
 export default HeaderImage;
