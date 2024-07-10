@@ -1,8 +1,8 @@
 import { Footer } from '@/components';
 
 export default function OrderLayout({ children }: { children: React.ReactNode }) {
-  return (
-    
+  return ( 
+
     <>
       <main>{children}</main>
       <Footer />
